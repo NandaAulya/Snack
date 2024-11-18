@@ -1,0 +1,18 @@
+.container {
+    padding-top : 10px;
+    text-align : center;
+    text-transform : capitalize;
+    font-weight : bold;
+    font-size : 20px;
+    font-style : normal;
+}
+
+.container a {
+    text-decoration : none;
+}
+
+.container .image img {
+    padding-top : 15px;
+    width : 200px;
+    hight : 200px;
+}
