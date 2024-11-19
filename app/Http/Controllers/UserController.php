@@ -24,12 +24,16 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(Auth::user()->role === 'admin' ? '/admin' : '/');
+            return redirect()->intended(Auth::user()->role === 'admin' ? '/admin' : route('home'));
         }
 
-        throw ValidationException::withMessages([
-            'email' => 'The provided credentials are incorrect.',
-        ]);
+        // throw ValidationException::withMessages([
+        //     'email' => 'email atau pasword salah',
+        // ]);
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->withInput();
     }
 
     public function logout(Request $request)
@@ -37,7 +41,7 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect()->route('home');
     }
 
     public function showRegisterForm()
