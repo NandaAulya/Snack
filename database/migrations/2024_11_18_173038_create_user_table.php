@@ -17,10 +17,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('full_name');
             $table->string('password');
-            $table->string('role')->default('user');
+            $table->string('role')->default('user')->after('email');
             $table->timestamps();
         });
     }
+
+//     public function up()
+// {
+//     Schema::table('users', function (Blueprint $table) {
+//         $table->string('role')->default('user')->after('email'); // Default user
+//     });
+// }
 
     /**
      * Reverse the migrations.
