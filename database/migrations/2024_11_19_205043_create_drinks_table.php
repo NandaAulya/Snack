@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
 return new class extends Migration
 {
     /**
@@ -12,14 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('snacks', function (Blueprint $table) {
+        Schema::create('drinks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price', 10, 2);
-            $table->string('category'); // "snack" or "drink"
             $table->text('description')->nullable();
+            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
+
+        // Schema::create('drinks', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->text('description')->nullable();
+        //     $table->decimal('price', 8, 2);
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('snacks');
+        Schema::dropIfExists('drinks');
     }
 };

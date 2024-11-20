@@ -11,23 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Schema::create('user', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->timestamps();
+        // });
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
             $table->string('email')->unique();
             $table->string('full_name');
             $table->string('password');
-            $table->string('role')->default('user')->after('email');
+            $table->string('role')->default('client');
             $table->timestamps();
         });
     }
-
-//     public function up()
-// {
-//     Schema::table('users', function (Blueprint $table) {
-//         $table->string('role')->default('user')->after('email'); // Default user
-//     });
-// }
 
     /**
      * Reverse the migrations.

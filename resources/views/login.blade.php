@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    @vite('resources/css/app.css') 
+    @vite('resources/css/app.css')
+    @vite('resources/js/login.js') 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         </style>
@@ -42,7 +43,12 @@
 
                 <!-- Password Input -->
                 <div class="mb-4">
-                    <input type="password" name="password" placeholder="Password" class="w-full p-3 border border-gray-300 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+                    <input type="password" name="password" id="password" placeholder="Password" class="w-full p-3 border border-gray-300 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+                </div>
+
+                <div class="flex items-center mb-8">
+                    <input type="checkbox" id="show-password" class="mr-2">
+                    <label for="show-password" class="text-base text-white">Show Password</label>
                 </div>
 
                 <!-- Submit Button -->
@@ -51,7 +57,7 @@
 
             <!-- Register Link -->
             <p class="text-center mt-6">
-                Don't have an account? <a href="{{ route('register') }}" class="text-orange-500 hover:underline">Register for free</a>
+                Don't have an account? <a href="{{ route('register') }}" class="text-orange-500 hover:underline">Register</a>
             </p>
         </div>
     </div>

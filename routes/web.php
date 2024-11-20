@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DrinkController;
 use App\Http\Controllers\SnackController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
-    return view ('welcome');
+    return view('home');
 });
 
 Route::get('/home', function () {
-    return view ('home');
+    return view('home');
 })->name('home');
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
@@ -18,12 +20,10 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [UserController::class, 'register']);
 
-// Route::resource('snacks', SnackController::class);
+Route::get('/Nadmn',[AdminController::class, 'tampil'])->name('nadmn.tampil');
+Route::get('/Nadmn/tambah',[AdminController::class, 'tambah'])->name('nadmn.tambah');
+Route::post('/Nadmn/submit',[AdminController::class, 'submit'])->name('nadmn.submit');
+Route::get('/Nadmn/update{id}',[AdminController::class, 'update'])->name('nadmn.update');
+Route::post('/Nadmn/edit{id}',[AdminController::class, 'edit'])->name('nadmn.edit');
+Route::get('/Nadmn/delete{id}',[AdminController::class, 'delete'])->name('nadmn.delete');
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-
-    Route::resource('/admin/snacks', SnackController::class);
-});
