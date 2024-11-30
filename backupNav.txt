@@ -107,3 +107,15 @@
 </div>
 </nav>
 </div>
+
+
+
+color
+
+colors: {
+ 'text': '#e4d4fc',
+ 'background': '#161616',
+ 'primary': '#b786f6',
+ 'secondary': '#87a30c',
+ 'accent': '#19ee1e',
+},

@@ -13,7 +13,7 @@
                 </a>
             </div>
 
-            <table class="table-auto w-full h-[250px] border-collapse border border-gray-300 mt-8">
+            <table class="table-auto w-full h-[300px] border-collapse border border-gray-300 mt-8">
                 <thead>
                     <tr class="bg-gray-200 text-left h-[50px]">
                         <th class="border border-gray-300 px-4 py-2">No</th>

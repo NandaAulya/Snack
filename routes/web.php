@@ -2,17 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\DrinkController;
-use App\Http\Controllers\SnackController;
 use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
-});
-
-Route::get('/home', function () {
-    return view('home');
 })->name('home');
+
+// Route::get('/home', function () {
+//     return view('home');
+// })->name('home');
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);

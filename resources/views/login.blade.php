@@ -12,15 +12,15 @@
         </style>
 </head>
 
-<body class="bg-cover bg-center h-screen flex justify-center items-center" style="background-image: url('/img/makanan-image.png');">
+<body class="bg-white bg-center h-screen flex justify-center items-center" style="background-image: url('/img/Snack.jpg');" >
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-black opacity-80"></div>
+    <div class="absolute inset-0 bg-black opacity-50"></div>
 
     <!-- Container -->
     <div class="relative z-10 flex flex-col md:flex-row bg-gray-800 rounded-lg shadow-lg w-11/12 md:w-4/5 max-w-4xl overflow-hidden">
 
         <div class="hidden md:flex md:w-1/2 bg-gray p-4">
-            <img src="{{ asset('img/makanan.png') }}" alt="Pocky Products" class="object-cover w-[200px] h-[300px] m-auto">
+            <img src="{{ asset('img/snack5.png') }}" alt="Pocky Products" class="object-cover w-[200px] h-[300px] m-auto rounded-lg">
         </div>
 
         <!-- Form Side -->

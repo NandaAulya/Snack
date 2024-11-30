@@ -1,7 +1,7 @@
 <div>
-    <nav x-data="{ isOpen: false }" class="bg-gray-800">
+    <nav x-data="{ isOpen: false }" style="background-color: ##161616" class="border-b-[1px] border-white">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-between">
+            <div class="relative flex h-[60px] items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
                     <button type="button" @click="isOpen = !isOpen"
@@ -35,12 +35,12 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                            <a href="{{ route('home') }}"
+                                class="rounded-md  px-3 py-2 text-lg font-medium  hover:bg-gray-700 hover:text-white text-white capitalize" aria-current="page">home
+                            </a>
                             <a href="#"
-                                class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white capitalize"
-                                aria-current="page">home</a>
-                            <a href="#"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white capitalize">our
-                                menu</a>
+                                class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white capitalize">our menu
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="relative ml-3">
                     <div>
                         <button type="button" @click="isOpen = !isOpen"
-                            class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                            class="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">Open user menu</span>
@@ -59,21 +59,11 @@
                         </button>
                     </div>
 
-                    <!--
-                  Dropdown menu, show/hide based on menu state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
                     <div x-show="isOpen" x-transition:enter="transition ease-out duration-100 transform"
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-75 transform"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                        class="origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg"
+                        class="origin-top-right absolute right-0 mt-10 w-[130px] rounded-md shadow-lg bg-white"
                         class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <!-- Active: "bg-gray-100 outline-none", Not Active: "" -->
@@ -83,14 +73,17 @@
                             role="menuitem" tabindex="-1">Admin Panel</a> --}}
                         
                         <!-- Logout -->
-                        <form action="{{ route('login') }}"  style="display: inline;">
+                        <form action="{{ route('login') }}"  style="display: inlin----******e;">
                             @csrf
                             <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Logout</button>
                         </form>
                     @else
                         <!-- Login -->
-                        <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                        <a href="{{ route('login') }}" class="block px-4 py-2 text-lg text-gray-700" role="menuitem"
                             tabindex="-1">Login</a>
+                        <a href="{{ route('nadmn.tampil') }}" class="block px-4 py-2 text-lg text-gray-700" role="menuitem"
+                            tabindex="-1">Admin</a>
+                            
                     @endauth
                     </div>
                 </div>

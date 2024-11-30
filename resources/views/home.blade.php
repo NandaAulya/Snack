@@ -11,7 +11,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="h-full bg-gray-300">
+<body class="h-full" style="background-color: #161616">
     <x-navbar></x-navbar>
 </body>
 
