@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
+
     public function showLoginForm()
     {
         return view('login');
@@ -24,7 +25,7 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(Auth::user()->role === 'admin' ? '/admin' : route('home'));
+            return redirect()->intended(Auth::user()->role === 'admin' ? '/Nadmn' : route('home'));
         }
 
         // throw ValidationException::withMessages([
@@ -38,10 +39,13 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->route('home');
+        if (Auth::check()) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+    
+        return redirect()->route('home')->with('message', 'Anda telah berhasil logout.');
     }
 
     public function showRegisterForm()

@@ -15,7 +15,7 @@ return new class extends Migration
         //     $table->id();
         //     $table->timestamps();
         // });
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id();
             $table->string('username');
             $table->string('email')->unique();

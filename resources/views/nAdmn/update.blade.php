@@ -1,4 +1,4 @@
-@extends('LayoutAdmin')
+@extends('LayoutDrinks')
 
 @section('content')
     <div class="flex justify-center items-center min-h-screen">

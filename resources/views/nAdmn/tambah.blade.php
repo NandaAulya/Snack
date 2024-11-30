@@ -1,4 +1,4 @@
-@extends('LayoutAdmin')
+@extends('LayoutDrinks')
 
 @section('content')
 
