@@ -1,5 +1,5 @@
 <div>
-    <nav x-data="{ isOpen: false }" style="background-color: ##161616" class="border-b-[1px] border-white">
+    <nav x-data="{ isOpen: false }" style="background-color: #fd17a5" class="border-b-[1px] border-white">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-[60px] items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -36,10 +36,10 @@
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="{{ route('home') }}"
-                                class="rounded-md  px-3 py-2 text-lg font-medium  hover:bg-gray-700 hover:text-white text-white capitalize" aria-current="page">home
+                                class="rounded-md  px-3 py-2 text-xl font-semibold   hover:bg-gray-700 hover:text-white text-white capitalize" aria-current="page">home
                             </a>
                             <a href="#"
-                                class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white capitalize">our menu
+                                class="rounded-md px-3 py-2 text-xl font-semibold  hover:bg-gray-700 hover:text-white text-white capitalize">our menu
                             </a>
                         </div>
                     </div>
