@@ -20,6 +20,7 @@
                         <th class="border border-gray-300 px-4 py-2">Nama</th>
                         <th class="border border-gray-300 px-4 py-2">Deskripsi</th>
                         <th class="border border-gray-300 px-4 py-2">Harga</th>
+                        <th class="border border-gray-300 px-4 py-2">Gambar</th>
                         <th class="border border-gray-300 px-4 py-2 text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -30,6 +31,9 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $data->name }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $data->description }}</td>
                             <td class="border border-gray-300 px-4 py-2">Rp {{ number_format($data->price, 0, ',', '.') }}</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <img src="{{ asset('storage/' . $data->image_path) }}" alt="Drink Image" class="w-16 h-16">
+                            </td>
                             <td class="border border-gray-300 px-4 py-2 text-center">
                                 <a href="{{ route('nadmn.update', $data->id) }}" 
                                    class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-6">

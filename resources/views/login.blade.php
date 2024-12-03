@@ -39,12 +39,18 @@
 
                 <!-- Email Input -->
                 <div class="mb-4">
-                    <input type="email" name="email" placeholder="Email" class="w-full p-3 border border-gray-400 rounded bg-white text-white focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                    <input type="email" name="email" placeholder="Email" class="w-full p-3 border border-gray-400 rounded bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                    @error('email')
+                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Password Input -->
                 <div class="mb-6">
                     <input type="password" name="password" id="password" placeholder="Password" class="w-full p-3 border border-gray-400 rounded bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                    @error('password')
+                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="flex items-center mb-8">

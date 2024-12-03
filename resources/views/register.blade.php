@@ -40,19 +40,27 @@
                 @csrf
 
                 <!-- Username Input -->
-                <input type="text" name="username" placeholder="Username" class="border p-2 w-full mb-4 bg-white text-white rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-
+                <input type="text" name="username" placeholder="Username" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                @error('username')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
                 <!-- Email Input -->
-                <input type="email" name="email" placeholder="Email" class="border p-2 w-full mb-4 bg-white text-white rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-
+                <input type="email" name="email" placeholder="Email" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                @error('email')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
                 <!-- Full Name Input -->
-                <input type="text" name="full_name" placeholder="Full Name" class="border p-2 w-full mb-4 bg-white text-white rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-
+                <input type="text" name="full_name" placeholder="Full Name" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                @error('full_name')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
                 <!-- Password Input -->
-                <input type="password" name="password" placeholder="Password" class="border p-2 w-full mb-4 bg-white text-white rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-
+                <input type="password" name="password" placeholder="Password" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                @error('password')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
                 <!-- Confirm Password Input -->
-                <input type="password" name="password_confirmation" placeholder="Confirm Password" class="border p-2 w-full mb-10 bg-white text-white rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+                <input type="password" name="password_confirmation" placeholder="Confirm Password" class="border p-2 w-full mb-10 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
 
                 <!-- Submit Button -->
                 <div class="flex justify-center">

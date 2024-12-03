@@ -25,7 +25,7 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(Auth::user()->role === 'admin' ? '/Nadmn' : route('home'));
+            return redirect()->intended(Auth::user()->role === 'admin' ? '/admin' : route('home'));
         }
 
         // throw ValidationException::withMessages([

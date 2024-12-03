@@ -8,6 +8,9 @@ use App\Models\drink as dri;
 
 class AdminController extends Controller
 {
+    public function Dashboard() {
+        return view('adminDashboard');
+    }
     public function tampil() {
         $drinks = dri::all();
         // dd($drinks); untuk ngecek apakah dbnya ada
@@ -19,10 +22,15 @@ class AdminController extends Controller
     }
 
     public function submit(Request $request) {
+        if ($request->hasFile('image_path')) {
+            $imagePath = $request->file('image_path')->store('images', 'public');
+            $request->merge(['image_path' => $imagePath]);
+        }
         $drink = new dri();
         $drink->name = $request->name;
         $drink->description = $request->description;
         $drink->price = $request->price;
+        $drink->image_path = $request->image_path;
         $drink->save();
         return redirect()->route('nadmn.tampil');
     }
@@ -37,6 +45,7 @@ class AdminController extends Controller
         $drink->name = $request->name;
         $drink->description = $request->description;
         $drink->price = $request->price;
+        $drink->image_path = $request->image_path;
         $drink->save();
         return redirect()->route('nadmn.tampil');
     }

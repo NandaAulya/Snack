@@ -34,7 +34,6 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="{{ route('home') }}"
                                 class="rounded-md  px-3 py-2 text-xl font-semibold   hover:bg-pink-400 hover:text-white text-white capitalize"
                                 aria-current="page">home
@@ -69,19 +68,17 @@
                         style="background-color: #fd17a5"
                         class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        <!-- Active: "bg-gray-100 outline-none", Not Active: "" -->
                         @auth
-                            <!-- Admin Panel -->
-                            {{-- <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
-                            role="menuitem" tabindex="-1">Admin Panel</a> --}}
-
-                            <!-- Logout -->
+                            @if (auth()->user()->role === 'admin')
+                                <a href="{{ route('adminDashboard') }}"
+                                    class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem"
+                                    tabindex="-1">Admin Panel</a>
+                            @endif
                             <form action="{{ route('login') }}" style="display: inlin----******e;">
                                 @csrf
                                 <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Logout</button>
                             </form>
                         @else
-                            <!-- Login -->
                             <a href="{{ route('login') }}" class="block px-4 py-2 text-lg text-gray-700" role="menuitem"
                                 tabindex="-1">Login</a>
                         @endauth

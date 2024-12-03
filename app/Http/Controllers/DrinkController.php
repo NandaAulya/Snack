@@ -19,10 +19,18 @@ class DrinkController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]); 
+
+        $imagePath = $request->file('image_path')->store('images', 'public');
+
+        // Drink::create($request->only('name', 'description', 'price', 'image_path'));
+        Drink::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image_path' => $imagePath, // Simpan path gambar
         ]);
-
-        Drink::create($request->only('name', 'description', 'price'));
-
         return redirect()->back()->with('success', 'Drink berhasil ditambahkan!');
     }
 

@@ -9,9 +9,9 @@ class drink extends Model
 {
     use HasFactory;
 
-    protected $table = 'drinks';
-    // protected $primaryKey = 'id';
-    // protected $fillable = ['name', 'description', 'price'];
+    // protected $table = 'drinks';
+    protected $primaryKey = 'id';
+    protected $fillable = ['name', 'description', 'price', 'image_path'];
     
 
 }
