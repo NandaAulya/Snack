@@ -21,7 +21,15 @@ class AdminController extends Controller
         return view('nAdmn.tambah');
     }
 
+    
     public function submit(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         if ($request->hasFile('image_path')) {
             $imagePath = $request->file('image_path')->store('images', 'public');
             $request->merge(['image_path' => $imagePath]);
@@ -55,6 +63,5 @@ class AdminController extends Controller
         $drink->delete();
         return redirect()->route('nadmn.tampil');
     }
-
 
 }

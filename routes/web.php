@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SnackController;
 
 Route::get('/', function () {
     return view('home');
@@ -25,3 +26,10 @@ Route::post('/Nadmn/submit',[AdminController::class, 'submit'])->name('nadmn.sub
 Route::get('/Nadmn/update{id}',[AdminController::class, 'update'])->name('nadmn.update');
 Route::post('/Nadmn/edit{id}',[AdminController::class, 'edit'])->name('nadmn.edit');
 Route::get('/Nadmn/delete{id}',[AdminController::class, 'delete'])->name('nadmn.delete');
+
+Route::get('/snack', [SnackController::class, 'tampilSnack'])->name('nadmn.tampilSnack');
+Route::get('/snack/tambahSnack', [SnackController::class, 'tambahSnack'])->name('nadmn.tambahSnack');
+Route::post('/snack/submitSnack', [SnackController::class, 'submitSnack'])->name('nadmn.submitSnack');
+Route::get('/snack/updateSnack/{id}', [SnackController::class, 'updateSnack'])->name('nadmn.updateSnack');
+Route::post('/snack/editSnack/{id}', [SnackController::class, 'editSnack'])->name('nadmn.editSnack');
+Route::get('/snack/deleteSnack/{id}', [SnackController::class, 'deleteSnack'])->name('nadmn.deleteSnack');

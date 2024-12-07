@@ -8,51 +8,57 @@ use App\Models\snack;
 
 class SnackController extends Controller
 {
-     public function index()
-    {
-        $snacks = Snack::all();
-        return view('snack.index', compact('snacks'));
+    public function tampilSnack() {
+        $snacks = snack::all();
+        return view('nAdmn.tampilSnack', compact('snacks'));
     }
 
-    public function create()
-    {
-        return view('snack.create');
+    public function tambahSnack() {
+        return view('nAdmn.addSnack');
     }
 
-    public function store(Request $request)
-    {
+
+    public function submitSnack(Request $request) {
         $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'category' => 'required|string|in:snack,drink',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Snack::create($request->all());
-        return redirect()->route('snack.index')->with('success', 'Snack berhasil ditambahkan.');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('images', 'public');
+            $request->merge(['image' => $image]);
+        }
+
+        $snacks = new snack();
+        $snacks->name = $request->name;
+        $snacks->description = $request->description;
+        $snacks->price = $request->price;
+        $snacks->image = $request->image;
+        $snacks->save();
+        return redirect()->route('nadmn.tampilSnack');
     }
 
-    public function edit(Snack $snack)
-    {
-        return view('snack.edit', compact('snack'));
+    public function updateSnack($id) {
+        $snacks = snack::findOrFail($id);
+        return view('nAdmn.updateSnack', compact('snacks'));
     }
 
-    public function update(Request $request, Snack $snack)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'category' => 'required|string|in:snack,drink',
-            'description' => 'nullable|string',
-        ]);
-
-        $snack->update($request->all());
-        return redirect()->route('snack.index')->with('success', 'Snack berhasil diperbarui.');
+    public function editSnack(Request $request, $id) {
+        $snacks = snack::findOrFail($id);
+        $snacks->name = $request->name;
+        $snacks->description = $request->description;
+        $snacks->price = $request->price;
+        $snacks->image = $request->image;
+        $snacks->save();
+        return redirect()->route('nadmn.tampilSnack');
     }
 
-    public function destroy(Snack $snack)
-    {
-        $snack->delete();
-        return redirect()->route('snack.index')->with('success', 'Snack berhasil dihapus.');
+    public function deleteSnack($id) {
+        $snacks = snack::findOrFail($id);
+        $snacks->delete();
+        return redirect()->route('nadmn.tampilSnack');
     }
+
 }
