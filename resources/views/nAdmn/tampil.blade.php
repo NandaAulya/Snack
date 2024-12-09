@@ -32,7 +32,7 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $data->description }}</td>
                             <td class="border border-gray-300 px-4 py-2">Rp {{ number_format($data->price, 0, ',', '.') }}</td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <img src="{{ asset($data->image_path) }}" alt="Drink Image" class="w-16 h-16">
+                                <img src="{{ asset($data->image_path) }}" alt="Drink Image" class="w-16 h-16 mx-auto">
                             </td>
                             <td class="border border-gray-300 px-4 py-2 text-center">
                                 <a href="{{ route('nadmn.update', $data->id) }}" 
