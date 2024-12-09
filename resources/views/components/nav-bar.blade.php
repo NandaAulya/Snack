@@ -1,5 +1,5 @@
 <div>
-    <nav x-data="{ isOpen: false }" style="background-color: #fd17a5">
+    <nav x-data="{ isOpen: false }" class="border-b-[1px] bg-background">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-[60px] items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -35,11 +35,11 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <a href="{{ route('home') }}"
-                                class="rounded-md  px-3 py-2 text-xl font-semibold   hover:bg-pink-400 hover:text-white text-white capitalize"
+                                class="rounded-md  px-3 py-2 text-xl font-semibold   hover:text-primary text-text capitalize"
                                 aria-current="page">home
                             </a>
                             <a href="#"
-                                class="rounded-md px-3 py-2 text-xl font-semibold  hover:bg-pink-400 hover:text-white text-white capitalize">our
+                                class="rounded-md px-3 py-2 text-xl font-semibold  hover:text-primary text-text capitalize"">our
                                 menu
                             </a>
                         </div>
@@ -64,22 +64,21 @@
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-75 transform"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                        class="origin-top-right absolute right-0 mt-10 w-[130px] rounded-md shadow-lg"
-                        style="background-color: #fd17a5"
+                        class="origin-top-right absolute right-0 mt-10 w-[130px] rounded-md shadow-lg bg-white"
                         class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         @auth
                             @if (auth()->user()->role === 'admin')
                                 <a href="{{ route('adminDashboard') }}"
-                                    class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem"
+                                    class="block w-full px-4 py-2 text-lg text-background hover:bg-gray-100 hover:rounded-md" role="menuitem"
                                     tabindex="-1">Admin Panel</a>
                             @endif
                             <form action="{{ route('login') }}" style="display: inlin----******e;">
                                 @csrf
-                                <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Logout</button>
+                                <button type="submit" class="block w-full px-4 py-2 text-lg text-background text-left hover:bg-gray-100 hover:rounded-md">Logout</button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="block px-4 py-2 text-lg text-gray-700" role="menuitem"
+                            <a href="{{ route('login') }}" class="block w-full px-4 py-8 text-lg text-background text-left hover:bg-gray-100 hover:rounded-md" role="menuitem"
                                 tabindex="-1">Login</a>
                         @endauth
                     </div>

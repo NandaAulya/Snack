@@ -17,6 +17,14 @@ export default {
             fontFamily: {
                 sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
               },
+              
+              colors: {
+                'text': '#e3d5f7', //putih
+                'background': '#06020b', //hitam
+                'primary': '#b68feb', //lilac
+                'secondary': '#88197b', //purple
+                'accent': '#dc3fa7', //pink
+               },
         },
     },
     plugins: [],
