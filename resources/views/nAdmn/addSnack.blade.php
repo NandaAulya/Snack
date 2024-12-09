@@ -24,7 +24,7 @@
             </div>
             <div class="mb-4">
                 <label class="block mb-2 font-medium">Image</label>
-                <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif, .svg" 
+                <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .gif, .svg" 
                        class="border p-2 w-full rounded" required>
             </div>
             <div class="flex justify-center mt-10">

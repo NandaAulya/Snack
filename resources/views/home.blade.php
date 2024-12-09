@@ -13,6 +13,9 @@
 
 <body class="h-full bg-background">
     <x-navbar></x-navbar>
+    <div class="container mx-auto">
+        @yield('content')
+    </div>
     
 </body>
 

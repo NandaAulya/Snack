@@ -13,7 +13,7 @@
                 </a>
             </div>
 
-            <table class="table-auto w-full h-[300px] border-collapse border border-gray-300 mt-8">
+            <table class="table-auto w-full h-auto border-collapse border border-gray-300 mt-8 text-center">
                 <thead>
                     <tr class="bg-gray-200 text-left h-[50px]">
                         <th class="border border-gray-300 px-4 py-2">No</th>
@@ -32,7 +32,7 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $data->description }}</td>
                             <td class="border border-gray-300 px-4 py-2">Rp {{ number_format($data->price, 0, ',', '.') }}</td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <img src="{{ asset('images/' . $data->image_path) }}" alt="Drink Image" class="w-16 h-16">
+                                <img src="{{ asset($data->image_path) }}" alt="Drink Image" class="w-16 h-16">
                             </td>
                             <td class="border border-gray-300 px-4 py-2 text-center">
                                 <a href="{{ route('nadmn.update', $data->id) }}" 

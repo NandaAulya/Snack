@@ -30,16 +30,15 @@ class AdminController extends Controller
             'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->hasFile('image_path')) {
-            $imagePath = $request->file('image_path')->store('images', 'public');
-            $request->merge(['image_path' => $imagePath]);
-        }
-        $drink = new dri();
-        $drink->name = $request->name;
-        $drink->description = $request->description;
-        $drink->price = $request->price;
-        $drink->image_path = $request->image_path;
-        $drink->save();
+        $imagename = time() . '.' . $request->image_path->extension();
+        $request->image_path->move(public_path('images'), $imagename);
+
+        $drinks = new dri();
+        $drinks->name = $request->name;
+        $drinks->description = $request->description;
+        $drinks->price = $request->price;
+        $drinks->image_path = 'images/'. $imagename;
+        $drinks->save();
         return redirect()->route('nadmn.tampil');
     }
 

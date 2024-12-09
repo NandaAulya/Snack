@@ -26,16 +26,14 @@ class SnackController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('images', 'public');
-            $request->merge(['image' => $image]);
-        }
+        $imagename = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imagename);
 
         $snacks = new snack();
         $snacks->name = $request->name;
         $snacks->description = $request->description;
         $snacks->price = $request->price;
-        $snacks->image = $request->image;
+        $snacks->image = 'images/'. $imagename;
         $snacks->save();
         return redirect()->route('nadmn.tampilSnack');
     }
