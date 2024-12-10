@@ -5,68 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
-    @vite('resources/js/login.js') 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        </style>
+    @vite('resources/js/login.js')
 </head>
 
-<body class="bg-center h-screen flex justify-center items-center" style="background-color: #eee0e9" >
-    <!-- Overlay -->
-    {{-- <div class="absolute inset-0 bg-black opacity-50"></div> --}}
+<body class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="w-[450px] h-[450px] bg-white text-primary rounded-xl p-10 shadow-lg">
+        <!-- Error Message -->
+        @if ($errors->any())
+            <div class="text-red-500 mb-4 text-center">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
-    <!-- Container -->
-    <div class="relative z-10 flex flex-col md:flex-row rounded-lg shadow-lg w-10/12 md:w-1/2 max-w-5xl overflow-hidden h-[400px]" style="background-color: #FFC0D9">
+        <!-- Login Form -->
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <h1 class="text-6xl font-bold text-primary1 text-center mt-6">Login</h1>
+
+            <!-- Email Input -->
+            <div class="relative mb-8 mt-10">
+                <input id="email" name="email" type="email" placeholder="Email" required
+                    class="w-full h-14 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
+                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-user"></i>
+            </div>
+
+            <!-- Password Input -->
+            <div class="relative mb-6">
+                <input id="password" name="password" type="password" placeholder="Password" required
+                    class="w-full h-14 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
+                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-lock-alt"></i>
+            </div>
 
 
-        <div class="hidden md:flex md:w-1/2 bg-gray p-4">
-            <img src="{{ asset('img/pink.jpg') }}" alt="Pocky Products" class="object-cover w-[270px] h-[350px] m-auto rounded-lg">
-        </div>
+            <!-- Show Password -->
+            <div class="flex items-center mb-10">
+                <input type="checkbox" id="show-password" class="mr-2">
+                <label for="show-password" class="text-base text-primary">Show Password</label>
+            </div>
 
-        <!-- Form Side -->
-        <div class="w-full md:w-1/2 text-white p-6 md:p-12 flex flex-col justify-center" style="background-color: #FF90BC">
-            <h2 class="text-3xl font-bold mb-10 text-center" style="color: #F9F9E0">Login</h2>
-
-            @if ($errors->any())
-                <div class="bg-red-500 text-white p-4 mb-4 rounded">
-                    {{ $errors->first() }}
-                </div>
-            @endif
-
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-
-                <!-- Email Input -->
-                <div class="mb-4">
-                    <input type="email" name="email" placeholder="Email" class="w-full p-3 border border-gray-400 rounded bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-                    @error('email')
-                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <!-- Password Input -->
-                <div class="mb-6">
-                    <input type="password" name="password" id="password" placeholder="Password" class="w-full p-3 border border-gray-400 rounded bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-                    @error('password')
-                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="flex items-center mb-8">
-                    <input type="checkbox" id="show-password" class="mr-2">
-                    <label for="show-password" class="text-base" style="color: #F9F9E0">Show Password</label>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded" style="background-color: #fd17a5">Sign In</button>
-            </form>
+            <!-- Submit Button -->
+            <div class="flex justify-center">
+                <button type="submit" class="w-[170px] h-12 text-white rounded-md shadow-md font-semibold text-xl bg-primary hover:bg-primary1 hover:rounded-md">Login</button>
+            </div>
 
             <!-- Register Link -->
-            <p class="text-center mt-8 font-semibold text-white">
-                Don't have an account? <a href="{{ route('register') }}" class=" hover:underline" style="color: #fd17a5">Register</a>
-            </p>
-        </div>
+            <div class="text-center mt-8">
+                <p class="text-lg text-accent">
+                    Don't have an account? 
+                    <a href="{{ route('register') }}" class="text-primary1 font-semibold hover:text-primary">Register</a>
+                </p>
+            </div>
+        </form>
     </div>
 </body>
 

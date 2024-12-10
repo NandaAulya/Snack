@@ -78,7 +78,7 @@
                                 <button type="submit" class="block w-full px-4 py-2 text-lg text-background text-left hover:bg-gray-100 hover:rounded-md">Logout</button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="block w-full px-4 py-8 text-lg text-background text-left hover:bg-gray-100 hover:rounded-md" role="menuitem"
+                            <a href="{{ route('login') }}" class="block w-full px-4 py-2 text-lg text-background text-left hover:bg-gray-100 hover:rounded-md" role="menuitem"
                                 tabindex="-1">Login</a>
                         @endauth
                     </div>

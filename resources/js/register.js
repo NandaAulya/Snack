@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    showPassword.addEventListener('change', (event) => {
-        const type = event.target.checked ? 'text' : 'password';
+    showPassword.addEventListener('change', () => {
+        const type = showPassword.checked ? 'text' : 'password';
         password.type = type;
         confirmPassword.type = type;
     });

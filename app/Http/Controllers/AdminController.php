@@ -49,12 +49,25 @@ class AdminController extends Controller
 
     public function edit(Request $request,$id){
         $drink = dri::findOrFail($id);
+        
+        if ($request->hasFile('image_path')) {
+            // Hapus gambar lama dari server jika ada
+            if ($drink->image_path && file_exists(public_path($drink->image_path))) {
+                unlink(public_path($drink->image_path)); // Menghapus file lama
+            }
+    
+            // Upload gambar baru
+            $img = time() . '.' . $request->image_path->extension();
+            $request->image_path->move(public_path('images'), $img);
+            $drink->image_path = 'images/' . $img;  // Update path gambar
+        }
+    
+        // Update data lainnya
         $drink->name = $request->name;
         $drink->description = $request->description;
         $drink->price = $request->price;
-        $drink->image_path = $request->image_path;
+    
         $drink->save();
-        return redirect()->route('nadmn.tampil');
     }
 
     public function delete($id){

@@ -5,76 +5,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,400;0,600;0,700;0,800;0,900&display=swap');
-    </style>
+    @vite('resources/js/register.js')
 </head>
 
-<body class="bg-center h-screen flex justify-center items-center" style="background-color: #eee0e9">
-    <!-- Overlay -->
-    {{-- <div class="absolute inset-0 bg-black opacity-50"></div> --}}
+<body class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="w-[550px] bg-white text-primary rounded-xl p-10 shadow-lg">
+        <!-- Error Message -->
+        @if ($errors->any())
+            <div class="text-red-500 mb-4 text-center">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
-    <!-- Container -->
-    <div class="relative z-10 flex flex-col md:flex-row rounded-lg shadow-lg w-10/12 md:w-1/2 max-w-5xl overflow-hidden h-[450px]" style="background-color: #FFC0D9">
-        <!-- Image Side -->
-        <div class="hidden md:flex md:w-1/2 bg-gray p-4">
-            <img src="{{ asset('img/pink.jpg') }}" alt="Pocky Products" class="object-cover w-[270px] h-[350px] m-auto rounded-lg">
-        </div>
+        <!-- Register Form -->
+        <form id="registerForm" method="POST" action="{{ route('register') }}">
+            @csrf
+            <h1 class="text-6xl font-bold text-primary1 text-center mt-6">Register</h1>
 
-        <!-- Form Side -->
-        <div class="w-full md:w-1/2 text-white p-6 md:p-12 flex flex-col justify-center" style="background-color: #FF90BC">
-            <h2 class="text-3xl font-bold mb-10 text-center" style="color: #F9F9E0">Register</h2>
+            <!-- Username Input -->
+            <div class="relative mb-6 mt-10">
+                <input id="username" name="username" type="text" placeholder="Username" required
+                    class="w-full h-12 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
+                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-user"></i>
+            </div>
 
-            @if ($errors->any())
-                <div class="bg-red-400 text-white p-4 mb-4 rounded">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <!-- Email Input -->
+            <div class="relative mb-6">
+                <input id="email" name="email" type="email" placeholder="Email" required
+                    class="w-full h-12 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
+                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-envelope"></i>
+            </div>
 
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
+            <!-- Full Name Input -->
+            <div class="relative mb-6">
+                <input id="full_name" name="full_name" type="text" placeholder="Full Name" required
+                    class="w-full h-12 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
+                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-user"></i>
+            </div>
 
-                <!-- Username Input -->
-                <input type="text" name="username" placeholder="Username" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-                @error('username')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-                <!-- Email Input -->
-                <input type="email" name="email" placeholder="Email" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-                @error('email')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-                <!-- Full Name Input -->
-                <input type="text" name="full_name" placeholder="Full Name" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-                @error('full_name')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-                <!-- Password Input -->
-                <input type="password" name="password" placeholder="Password" class="border p-2 w-full mb-4 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
-                @error('password')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-                <!-- Confirm Password Input -->
-                <input type="password" name="password_confirmation" placeholder="Confirm Password" class="border p-2 w-full mb-10 bg-white text-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+            <!-- Password Input -->
+            <div class="relative mb-6">
+                <input id="password" name="password" type="password" placeholder="Password" required
+                    class="w-full h-12 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
+                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-lock-alt"></i>
+            </div>
 
-                <!-- Submit Button -->
-                <div class="flex justify-center">
-                    <button type="submit" class="w-[170px] h-12 text-white rounded shadow-md font-semibold text-xl hover:bg-pink-600" style="background-color: #fd17a5">
-                        Register
-                    </button>
-                </div>
-            </form>
+            <!-- Confirm Password Input -->
+            <div class="relative mb-6">
+                <input id="confirm-password" name="password_confirmation" type="password" placeholder="Confirm Password" required
+                    class="w-full h-12 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
+                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-lock-alt"></i>
+            </div>
 
-            <p class="text-center mt-6 font-semibold text-white">
-                Already have an account? <a href="{{ route('login') }}" class=" hover:underline" style="color: #fd17a5">Login</a>
-            </p>
+            <!-- Show Password -->
+            <div class="flex items-center mb-8">
+                <input type="checkbox" id="show-password" class="mr-2">
+                <label for="show-password" class="text-base text-primary">Show Password</label>
+            </div>
 
-        </div>
+            <!-- Submit Button -->
+            <div class="flex justify-center">
+                <button type="submit" class="w-[170px] h-12 text-white rounded-md shadow-md font-semibold text-xl bg-primary hover:bg-primary1">
+                    Register
+                </button>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center mt-8">
+                <p class="text-lg text-accent">
+                    Already have an account? 
+                    <a href="{{ route('login') }}" class="text-primary1 font-semibold hover:text-primary">Login</a>
+                </p>
+            </div>
+        </form>
     </div>
 </body>
 
