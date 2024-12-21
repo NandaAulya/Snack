@@ -9,61 +9,79 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
     @vite('resources/js/login.js')
+    @vite('resources/js/text.js')
+    <style>
+        #typing-text {
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            transform: translateY(-50%);
+        }
+        .container {
+            position: relative;
+        }
+    </style>
 </head>
 
-<body class="flex justify-center items-center min-h-screen bg-gray-100">
-    <div class="w-[450px] h-auto bg-white text-primary rounded-xl p-10 shadow-lg">
-        <!-- Error Message -->
-        @if ($errors->any())
-            <div class="text-red-500 mb-4 text-center">
-                {{ $errors->first() }}
+<body class="flex items-center justify-center min-h-screen font-poppins">
+    <div class="flex w-full h-full bg-text">
+        <div class="flex-1 bg-white h-full p-10 flex flex-col justify-center container">
+            <h1 id="typing-text" class="text-6xl font-bold text-gray-700"></h1>
+            <div class="mt-48 flex justify-center">
+                <img src="{{ asset('images/ppp.png') }}" alt="logo" class="w-[550px] h-[650px]">
             </div>
-        @endif
+        </div>
 
-        <!-- Login Form -->
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <h1 class="text-6xl font-bold text-primary1 text-center mt-6">Login</h1>
-
-            <!-- Email Input -->
-            <div class="relative mb-8 mt-10">
-                <input id="email" name="email" type="email" placeholder="Email" required
-                    class="w-full h-14 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
-                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-user"></i>
+        {{-- login form  --}}
+        <div class="flex-1 p-10 flex flex-col justify-center items-center">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-bold text-gray-700">Log in</h1>
             </div>
 
-            <!-- Password Input -->
-            <div class="relative mb-6">
-                <input id="password" name="password" type="password" placeholder="Password" required
-                    class="w-full h-14 bg-transparent border-2 border-black/20 rounded-md text-xl text-primary px-4 focus:outline-none placeholder-primary">
-                <i class="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-blue-300 bx bxs-lock-alt"></i>
+            {{-- login with go --}}
+            <div class="flex flex-col gap-3 mb-6">
+                <button type="submit" class="flex items-center justify-center w-full md:w-[400px] h-12 bg-white border-2 border-gray-300 rounded-md text-gray-700 font-medium shadow-sm hover:bg-gray-50">
+                    <img src="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-pks9lbdv.png" alt="Google" class="w-5 h-5 mr-2">
+                    <a href="{{ route('auth.google') }}">Log in with Google</a>
+                </button>
             </div>
 
-
-            <!-- Show Password -->
-            <div class="flex items-center mb-10">
-                <input type="checkbox" id="show-password" class="mr-2">
-                <label for="show-password" class="text-base text-primary">Show Password</label>
+            <div class="flex items-center justify-center mb-6">
+                <span class="px-4 text-gray-700 text-base">or email</span>
             </div>
 
-            <!-- Submit Button -->
-            <div class="flex justify-center">
-                <button type="submit" class="w-[170px] h-12 text-white rounded-md shadow-md font-semibold text-xl bg-primary hover:bg-primary1 hover:rounded-md">Login</button>
-            </div>
+            {{-- email input  --}}
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="mb-4">
+                    <input id="email" name="email" type="email" placeholder="Enter your email address" required
+                        class="w-full md:w-[400px] h-12 bg-gray-50 border-2 border-gray-300 rounded-md px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-            <!-- Google Login Button -->
-            <div class="flex justify-start mt-10">
-                <button type="submit" class="w-[100px] h-12 text-white rounded-md shadow-md font-semibold text-sm bg-red-500 hover:bg-red-600 hover:rounded-md"><a href="{{ route('auth.google') }}">Login with google</a></button>
-            </div>
+                {{-- pw input  --}}
+                <div class="mb-4 relative">
+                    <input id="password" name="password" type="password" placeholder="Enter your password" required
+                        class="w-full md:w-[400px] h-12 bg-gray-50 border-2 border-gray-300 rounded-md px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                {{-- show password --}}
+                <div class="flex items-center mb-10">
+                    <input type="checkbox" id="show-password" class="mr-2">
+                    <label for="show-password" class="text-base text-gray-500">Show Password</label>
+                </div>
 
-            <!-- Register Link -->
-            <div class="text-center mt-8">
-                <p class="text-lg text-accent">
-                    Don't have an account? 
-                    <a href="{{ route('register') }}" class="text-primary1 font-semibold hover:text-primary">Register</a>
-                </p>
-            </div>
-        </form>
+                {{-- submit button --}}
+                <div class="mb-4">
+                    <button type="submit" class="w-full md:w-[400px] h-12 bg-blue-600 text-white rounded-md font-semibold text-lg hover:bg-blue-700">Log in</button>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-gray-500 text-sm">
+                        Don't have an account? <a href="{{ route('register') }}" class="text-blue-500 font-medium hover:underline">Create an account</a>
+                    </p>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

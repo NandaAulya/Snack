@@ -42,13 +42,13 @@
                     <p class="text-xs text-gray-700 opacity-75 truncate-description mb-2" title="{{ $snack->description }}">
                         {{ $snack->description }}
                     </p>
-                    <p class="mb-2 text-right font-medium text-blue-gray-900 text-sm">Rp {{ number_format($snack->price, 0, ',', '.') }}</p>
+                    <p class="mb-2 text-right font-medium text-blue-gray-900 text-sm">Rp. {{ number_format($snack->price, 0, ',', '.') }}</p>
                 </div>
                 <div class="p-4 pt-0">
                     <button
                         class="block w-full rounded-lg bg-blue-gray-900/10 py-2 px-4 text-center text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105"
                         type="button">
-                        buy
+                        See Detail
                     </button>
                 </div>
             </div>
@@ -65,13 +65,13 @@
                     <p class="text-xs text-gray-700 opacity-75 truncate-description" title="{{ $drink->description }}">
                         {{ $drink->description }}
                     </p>
-                    <p class="mt-2 text-right font-medium text-blue-gray-900 text-sm">Rp {{ number_format($drink->price, 0, ',', '.') }}</p>
+                    <p class="mt-2 text-right font-medium text-blue-gray-900 text-sm">Rp. {{ number_format($drink->price, 0, ',', '.') }}</p>
                 </div>
                 <div class="p-4 pt-0">
                     <button
                         class="block w-full rounded-lg bg-blue-gray-900/10 py-2 px-4 text-center text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105"
                         type="button">
-                        buy
+                        See Detail
                     </button>
                 </div>
             </div>
