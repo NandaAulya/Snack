@@ -28,10 +28,6 @@ class UserController extends Controller
             return redirect()->intended(Auth::user()->role === 'admin' ? '/admin' : route('home'));
         }
 
-        // throw ValidationException::withMessages([
-        //     'email' => 'email atau pasword salah',
-        // ]);
-
         return back()->withErrors([
             'email' => 'Email atau password salah.',
         ])->withInput();
@@ -72,102 +68,4 @@ class UserController extends Controller
 
         return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
     }
-
-    public function index()
-    {
-        $users = User::all();
-        return view('admin.users', compact('user'));
-    }
-
-    // public function update(Request $request, $id)
-    // {
-    //     $user = User::findOrFail($id);
-    //     $user->update(['role' => $request->role]);
-
-    //     return redirect()->back()->with('success', 'Role pengguna berhasil diperbarui!');
-    // }
-
-    public function update(Request $request, $id)
-{
-    $request->validate([
-        'role' => 'required|in:admin,client',
-    ]);
-
-    $user = User::findOrFail($id);
-    $user->update(['role' => $request->role]);
-
-    return redirect()->back()->with('success', 'Role pengguna berhasil diperbarui!');
-}
-
-    // public function destroy($id)
-    // {
-    //     User::findOrFail($id)->delete();
-    //     return redirect()->back()->with('success', 'Pengguna berhasil dihapus!');
-    // }
-
-    public function destroy($id)
-{
-    $user = User::findOrFail($id);
-    $user->delete();
-
-    return redirect()->back()->with('success', 'Pengguna berhasil dihapus!');
-}
-
-    // public function index()
-    // {
-    //     $title = 'Admin';
-    //     return view('admin', compact('title'));
-    // }
-
-    // public function manageSnacks()
-    // {
-    //     $title = 'Kelola Snack';
-    //     return view('admin.snacks', compact('title'));
-    // }
-
-    // public function manageDrinks()
-    // {
-    //     $title = 'Kelola Drink';
-    //     return view('admin.drinks', compact('title'));
-    // }
-
-    // public function manageUsers()
-    // {
-    //     $title = 'Kelola Pengguna';
-    //     $users = User::all();
-    //     return view('admin.user', compact('title', 'users'));
-    // }
-
-    // public function viewAllUsers()
-    // {
-    //     $users = User::all();
-    //     return view('admin.user', compact('users'));
-    // }
-
-    // public function update(Request $request)
-    // {
-    //     $request->validate([
-    //         'id_user' => 'required|exists:users,id',
-    //         'role' => 'required|in:admin,client',
-    //     ]);
-
-    //     $user = User::find($request->id_user);
-    //     $user->role = $request->role;
-    //     $user->save();
-
-    //     return redirect()->route('users.index')->with('success', 'Data pengguna berhasil diperbarui.');
-    // }
-
-    // public function destroy(Request $request)
-    // {
-    //     $request->validate([
-    //         'id_user' => 'required|exists:users,id',
-    //     ]);
-
-    //     $user = User::find($request->id_user);
-    //     $user->delete();
-
-    //     return redirect()->route('users.index')->with('success', 'User berhasil dihapus.');
-    // }
-
 }

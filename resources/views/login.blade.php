@@ -12,7 +12,7 @@
 </head>
 
 <body class="flex justify-center items-center min-h-screen bg-gray-100">
-    <div class="w-[450px] h-[450px] bg-white text-primary rounded-xl p-10 shadow-lg">
+    <div class="w-[450px] h-auto bg-white text-primary rounded-xl p-10 shadow-lg">
         <!-- Error Message -->
         @if ($errors->any())
             <div class="text-red-500 mb-4 text-center">
@@ -49,6 +49,11 @@
             <!-- Submit Button -->
             <div class="flex justify-center">
                 <button type="submit" class="w-[170px] h-12 text-white rounded-md shadow-md font-semibold text-xl bg-primary hover:bg-primary1 hover:rounded-md">Login</button>
+            </div>
+
+            <!-- Google Login Button -->
+            <div class="flex justify-start mt-10">
+                <button type="submit" class="w-[100px] h-12 text-white rounded-md shadow-md font-semibold text-sm bg-red-500 hover:bg-red-600 hover:rounded-md"><a href="{{ route('auth.google') }}">Login with google</a></button>
             </div>
 
             <!-- Register Link -->

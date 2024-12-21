@@ -1,54 +1,44 @@
 @extends('LayoutSnack')
 
 @section('content')
-    <div class="flex justify-center mt-20">
+    <div class="flex justify-center mt-10">
         <div class="w-[1000px]">
-            <div class="mb-10 flex justify-center">
-                <h1 class="text-3xl font-bold">Daftar Snack</h1>
-            </div>
-            <div class="flex justify-end mb-4">
+            <div class="flex justify-end mb-8">
                 <a href="{{ route('nadmn.tambahSnack') }}" 
-                   class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                   Tambah Snack
+                   class="bg-secondary text-white px-4 py-2 rounded hover:bg-primary">
+                   Add Snack
                 </a>
             </div>
 
-            <table class="table-auto w-full h-[150px] border-collapse border border-gray-300 mt-8">
-                <thead>
-                    <tr class="bg-gray-200 h-[50px] text-center">
-                        <th class="border border-gray-300 px-4 py-2">No</th>
-                        <th class="border border-gray-300 px-4 py-2">Nama</th>
-                        <th class="border border-gray-300 px-4 py-2">Deskripsi</th>
-                        <th class="border border-gray-300 px-4 py-2">Harga</th>
-                        <th class="border border-gray-300 px-4 py-2">Gambar</th>
-                        <th class="border border-gray-300 px-4 py-2 text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($snacks as $no => $snack)
-                        <tr class="hover:bg-gray-100 text-center">
-                            <td class="border border-gray-300 px-4 py-2">{{ $no + 1 }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $snack->name }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $snack->description }}</td>
-                            <td class="border border-gray-300 px-4 py-2">Rp {{ number_format($snack->price, 0, ',', '.') }}</td>
-                            <td class="border border-gray-300 px-4 py-2">
-                                <img src="{{ asset($snack->image) }}" alt="Drink Image" class="w-16 h-16 mx-auto">
-                            </td>
-                            <td class="border border-gray-300 px-4 py-2 text-center">
-                                <a href="{{ route('nadmn.updateSnack', $snack->id) }}" 
-                                   class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-6">
-                                    Edit
-                                </a>
-                                <a href="{{ route('nadmn.deleteSnack', $snack->id) }}" 
-                                   class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" 
-                                   onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="space-y-4">
+                @foreach ($snacks as $snack)
+                    <div class="flex items-center bg-white text-background rounded-lg shadow-xl overflow-hidden hover:bg-gray-100 hover:rounded-lg">
+                        <!-- Gambar -->
+                        <img src="{{ asset($snack->image) }}" alt="Snack Image" class="w-40 h-40 object-cover">
+
+                        <!-- Informasi -->
+                        <div class="flex-1 p-4">
+                            <h2 class="text-xl font-bold capitalize">{{ $snack->name }}</h2>
+                            <p class="text-lg mt-2 font-semibold">Deskripsi:</p>
+                            <span>{{ $snack->description }}</span>
+                            <p class="text-lg mt-2">Harga: <span class="font-semibold">Rp {{ number_format($snack->price, 0, ',', '.') }}</span></p>
+                        </div>
+
+                        <!-- Tombol Aksi -->
+                        <div class="flex justify-between items-end p-4">
+                            <a href="{{ route('nadmn.updateSnack', $snack->id) }}" 
+                               class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+                                Update
+                            </a>
+                            <a href="{{ route('nadmn.deleteSnack', $snack->id) }}" 
+                               class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mt-2 ml-2"
+                               onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

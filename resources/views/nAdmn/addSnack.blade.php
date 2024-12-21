@@ -4,7 +4,7 @@
 
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
     <div class="w-[800px] h-[600px] bg-white shadow-md rounded p-6">
-        <h2 class="text-4xl font-bold mb-10 text-center mt-10">Tambah Snack</h2>
+        <h2 class="text-4xl font-bold mb-10 text-center mt-10">Add Snack</h2>
         <form action="{{ route('nadmn.submitSnack') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
@@ -30,7 +30,7 @@
             <div class="flex justify-center mt-10">
                 <button type="submit" 
                         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-1/2 ">
-                    Tambah
+                    Add Snack
                 </button>
             </div>
         </form>

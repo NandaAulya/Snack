@@ -1,17 +1,19 @@
 <?php
 
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SnackController;
+use App\Http\Controllers\HomeController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-// Route::get('/home', function () {
+// Route::get('/', function () {
 //     return view('home');
 // })->name('home');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
@@ -33,3 +35,8 @@ Route::post('/snack/submitSnack', [SnackController::class, 'submitSnack'])->name
 Route::get('/snack/updateSnack/{id}', [SnackController::class, 'updateSnack'])->name('nadmn.updateSnack');
 Route::post('/snack/editSnack/{id}', [SnackController::class, 'editSnack'])->name('nadmn.editSnack');
 Route::get('/snack/deleteSnack/{id}', [SnackController::class, 'deleteSnack'])->name('nadmn.deleteSnack');
+
+Route::controller(SocialiteController::class)->group(function () {
+    Route::get('auth/google', 'googleLogin')->name('auth.google');
+    Route::get('auth/callback', 'googleAutentication');
+});
