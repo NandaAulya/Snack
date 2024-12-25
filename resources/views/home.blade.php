@@ -7,30 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HALAMAN HOME</title>
     @vite('resources/css/app.css')
+    @vite('resources/js/deskripsi.js')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         .card-image {
-            height: 12rem; /* Fixed height for consistent card layout */
+            height: 12rem;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border-radius: 0.5rem; /* Ensure rounded edges */
+            border-radius: 0.5rem; 
         }
-
         .card-image img {
             height: 100%;
             width: auto;
-            object-fit: contain; /* Ensure the image is fully visible */
+            object-fit: contain;
         }
     </style>
 </head>
 
 <body class="h-full bg-white">
     <x-navbar></x-navbar>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6 mt-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6 mt-20 z-[1]">
         <!-- Snack Cards -->
         @foreach ($snacks as $snack)
             <div class="relative flex flex-col rounded-lg bg-white text-gray-700 shadow-md w-full max-w-xs mx-auto">
@@ -56,7 +56,7 @@
 
         <!-- Drink Cards -->
         @foreach ($drinks as $drink)
-            <div class="relative flex flex-col rounded-lg bg-white text-gray-700 shadow-md w-full max-w-xs mx-auto mt-10">
+            <div class="relative flex flex-col rounded-lg bg-white text-gray-700 shadow-md w-full max-w-xs mx-auto z-[1]">
                 <div class="card-image mt-10">
                     <img src="{{ asset($drink->image_path) }}" alt="{{ $drink->name }}">
                 </div>
@@ -77,18 +77,6 @@
             </div>
         @endforeach
     </div>
-
-    <script>
-        // Truncate long descriptions
-        document.addEventListener('DOMContentLoaded', () => {
-            const maxLength = 100; // Maximum character length
-            document.querySelectorAll('.truncate-description').forEach(el => {
-                if (el.textContent.length > maxLength) {
-                    el.textContent = el.textContent.slice(0, maxLength) + '...';
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

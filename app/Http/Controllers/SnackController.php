@@ -48,7 +48,7 @@ class SnackController extends Controller
         $snacks->name = $request->name;
         $snacks->description = $request->description;
         $snacks->price = $request->price;
-        $snacks->image = $request->image;
+        // $snacks->image = $request->image;
         $snacks->save();
         return redirect()->route('nadmn.tampilSnack');
     }

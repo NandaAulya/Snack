@@ -6,7 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CRUD</title>
     @vite('resources/css/app.css')
-
+    @vite('resources/js/text2.js')
+    <style>
+        #typing-text {
+            position: absolute;
+            top: 5%;
+            left: 45%;
+            transform: translateY(-50%);
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body class="h-screen">
     <div class="flex h-screen bg-gray-200">
@@ -17,9 +27,8 @@
             </div>
             <x-adminnav></x-adminnav>
         </div>
-        <div class="container mx-auto mb-10">
-            <p class="text-4xl font-bold text-center mt-10 text-gray-700">Selamat Datang😉</p>
-        </div>
     </div>
+    <div id="typing-text" class="text-5xl font-bold text-gray-700"></div>
+
 </body>
 </html>

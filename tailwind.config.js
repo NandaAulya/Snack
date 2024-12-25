@@ -11,12 +11,7 @@ export default {
     ],
     theme: {
         extend: {
-            fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-            },
-            fontFamily: {
-                sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
-            },
+            
 
             colors: {
                 text: "#e3d5f7", //putih

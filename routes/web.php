@@ -15,6 +15,12 @@ use App\Models\User;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/maps', [HomeController::class, 'maps'])->name('maps');
+
+// Route::get('/maps', function () {
+//     return view('maps');
+// });
+
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');

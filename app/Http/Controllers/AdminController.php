@@ -42,7 +42,7 @@ class AdminController extends Controller
         return redirect()->route('nadmn.tampil');
     }
 
-    public function update($id){
+    public function update(Request $request, $id){
         $drink = dri::findOrFail($id);
         return view('nAdmn.update',compact('drink'));
     }
@@ -66,8 +66,9 @@ class AdminController extends Controller
         $drink->name = $request->name;
         $drink->description = $request->description;
         $drink->price = $request->price;
-    
+        
         $drink->save();
+        return redirect()->route('nadmn.tampil');
     }
 
     public function delete($id){

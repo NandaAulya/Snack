@@ -13,4 +13,9 @@ class HomeController extends Controller
         $drinks = Drink::all();
         return view('home', compact('snacks', 'drinks'));
     }
+
+    function maps(){
+        return view('maps');
+    }
+    
 }
