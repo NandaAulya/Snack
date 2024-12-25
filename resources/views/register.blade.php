@@ -1,32 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
+    @vite('resources/js/register.js')
+    @vite('resources/js/text.js')
+    <style>
+        #typing-text {
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            transform: translateY(-50%);
+        }
+        .container {
+            position: relative;
+        }
+    </style>
 </head>
-<body>
-    <div class="container mx-auto">
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-            <h1 class="text-center text-4xl mb-4">Register</h1>
-            @if ($errors->any())
-                <div class="bg-red-500 text-white p-2 mb-4">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+
+<body class="flex items-center justify-center min-h-screen font-poppins">
+    <div class="flex w-full h-full bg-text">
+        <!-- Left Side (Illustration) -->
+        <div class="flex-1 bg-white h-full p-10 flex flex-col justify-center container">
+            <h1 id="typing-text" class="text-6xl font-bold text-gray-700"></h1>
+            <div class="mt-48 flex justify-center">
+                <img src="{{ asset('images/ppp.png') }}" alt="logo" class="w-[550px] h-[650px]">
+            </div>
+        </div>
+
+        <!-- Right Side (Form) -->
+        <div class="flex-1 p-10 flex flex-col justify-center items-center">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-bold text-gray-700">Register</h1>
+            </div>
+
+            <!-- Register Form -->
+            <form id="registerForm" method="POST" action="{{ route('register') }}">
+                @csrf
+                <!-- Username Input -->
+                <div class="mb-4">
+                    <input id="username" name="username" type="text" placeholder="Username" required
+                        class="w-full md:w-[400px] h-12 bg-gray-50 border-2 border-gray-300 rounded-md px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
-            @endif
-            <input type="text" name="username" placeholder="Username" class="border p-2 w-full mb-4" required>
-            <input type="email" name="email" placeholder="Email" class="border p-2 w-full mb-4" required>
-            <input type="text" name="full_name" placeholder="Full Name" class="border p-2 w-full mb-4" required>
-            <input type="password" name="password" placeholder="Password" class="border p-2 w-full mb-4" required>
-            <input type="password" name="password_confirmation" placeholder="Confirm Password" class="border p-2 w-full mb-4" required>
-            <button type="submit" class="bg-blue-500 text-white p-2 w-full">Register</button>
-        </form>
+
+                <!-- Email Input -->
+                <div class="mb-4">
+                    <input id="email" name="email" type="email" placeholder="Enter your email address" required
+                        class="w-full md:w-[400px] h-12 bg-gray-50 border-2 border-gray-300 rounded-md px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Full Name Input -->
+                <div class="mb-4">
+                    <input id="full_name" name="full_name" type="text" placeholder="Full Name" required
+                        class="w-full md:w-[400px] h-12 bg-gray-50 border-2 border-gray-300 rounded-md px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-4">
+                    <input id="password" name="password" type="password" placeholder="Enter your password" required
+                        class="w-full md:w-[400px] h-12 bg-gray-50 border-2 border-gray-300 rounded-md px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Confirm Password Input -->
+                <div class="mb-4">
+                    <input id="confirm-password" name="password_confirmation" type="password" placeholder="Confirm Password" required
+                        class="w-full md:w-[400px] h-12 bg-gray-50 border-2 border-gray-300 rounded-md px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Show Password -->
+                <div class="flex items-center mb-10">
+                    <input type="checkbox" id="show-password" class="mr-2">
+                    <label for="show-password" class="text-base text-gray-500">Show Password</label>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-4">
+                    <button type="submit" class="w-full md:w-[400px] h-12 bg-blue-600 text-white rounded-md font-semibold text-lg hover:bg-blue-700">Register</button>
+                </div>
+
+                <!-- Login Link -->
+                <div class="text-center">
+                    <p class="text-gray-500 text-sm">
+                        Already have an account? <a href="{{ route('login') }}" class="text-blue-500 font-medium hover:underline">Log in</a>
+                    </p>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
+
 </html>
