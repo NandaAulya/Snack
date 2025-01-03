@@ -47,6 +47,7 @@ class SnackController extends Controller
         $snacks = snack::findOrFail($id);
         $snacks->name = $request->name;
         $snacks->description = $request->description;
+        $snacks->stock = $request->stock;
         $snacks->price = $request->price;
         // $snacks->image = $request->image;
         $snacks->save();

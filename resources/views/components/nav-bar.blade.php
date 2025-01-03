@@ -12,7 +12,7 @@
                             class="rounded-md  px-3 py-2 text-xl font-semibold   hover:text-gray-900 text-gray-700 capitalize"
                             aria-current="page">home
                         </a>
-                        <a href="#"
+                        <a href="{{ route('ourMenu') }}"
                             class="rounded-md px-3 py-2 text-xl font-semibold  hover:text-gray-900 text-gray-700 capitalize"">our
                             menu
                         </a>

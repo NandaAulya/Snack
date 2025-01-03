@@ -8,19 +8,20 @@
     <title>CRUD</title>
     @vite('resources/css/app.css')
 </head>
-<body class="h-full bg-gray-200">
-    <div class="flex h-full">
-        <div class="w-64 h-full bg-white text-gray-700 flex-shrink-0 border-r border-gray-300 fixed top-0 left-0 z-10 overflow-y-auto">
-            <div class="p-4 border-b border-gray-300">
-                <h2 class="mt-4 text-center text-xl font-bold">Admin Dashboard</h2>
-            </div>
+
+<body class="h-screen">
+    <x-nav-dashboard></x-nav-dashboard>
+    <div class="flex min-h-screen bg-white">
+        <!-- Sidebar -->
+        <div class="min-h-screen w-64 text-gray-700 bg-white border-r border-gray-300">
             <x-adminnav></x-adminnav>
         </div>
-        <div class="flex-1 p-6 ml-64">
+        <div class="flex-1 p-6 ">
             <div class="container mx-auto">
                 @yield('content')
             </div>
         </div>
     </div>
 </body>
+
 </html>

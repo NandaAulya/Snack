@@ -42,27 +42,8 @@
                 <p class="text-gray-700">Email: ahnasution@forecoffee.com</p>
             </div>
         </div>
-
-        <!-- Store Card 2 -->
-        {{-- <div class="flex flex-col md:flex-row items-center border rounded-lg shadow-lg p-6">
-            <!-- Image -->
-            <img src="{{ asset('images/ppp.png') }}" alt="Adam Malik" class="rounded-lg w-full md:w-1/3 mb-4 md:mb-0 md:mr-6">
-            <!-- Content -->
-            <div class="flex flex-col">
-                <h2 class="text-xl font-bold">Adam Malik</h2>
-                <p class="text-gray-600 text-sm">
-                    Fore Coffee Adam Malik - Jl. H Adam Malik, Kel. Silalas, 
-                    Kec. Medan Barat, Kota Medan, Sumatera Utara
-                </p>
-                <p class="text-green-600 mt-2">
-                    <a href="https://www.google.com/maps" target="_blank">See on Google Maps</a>
-                </p>
-                <p class="text-gray-700 mt-2">Open Hours: 07:00 - 23:00</p>
-                <p class="text-gray-700">Phone: +62 812 9876 5432</p>
-                <p class="text-gray-700">Email: adammalik@forecoffee.com</p>
-            </div>
-        </div> --}}
     </div>
+    <x-footer></x-footer>
 </body>
 
 </html>

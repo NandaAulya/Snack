@@ -16,6 +16,11 @@
                     <textarea name="description" placeholder="Deskripsi Drink" class="border p-2 w-full rounded" rows="4" required>{{ $drink->description }}</textarea>
                 </div>
                 <div class="mb-4">
+                    <label class="block mb-2 font-medium">Stok</label>
+                    <input type="number" value="{{ $drink->stock }}" name="stock" placeholder="Stok Drink"
+                        class="border p-2 w-full rounded" required>
+                </div>
+                <div class="mb-4">
                     <label class="block mb-2 font-medium">Harga</label>
                     <input type="number" value="{{ $drink->price }}" step="0.01" name="price" placeholder="Harga"
                         class="border p-2 w-full rounded" required>

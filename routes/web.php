@@ -14,8 +14,9 @@ use App\Models\User;
 // })->name('home');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/maps', [HomeController::class, 'maps'])->name('maps');
+Route::get('/ourMenu', [HomeController::class, 'ourMenu'])->name('ourMenu');
+Route::get('/detail', [HomeController::class, 'detail'])->name('detail');
 
 // Route::get('/maps', function () {
 //     return view('maps');
