@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('google_id')->nullable();
             $table->string('role')->default('client');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

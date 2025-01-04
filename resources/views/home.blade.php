@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HALAMAN HOME</title>
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     @vite('resources/js/deskripsi.js')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         .card-image {
@@ -59,7 +61,9 @@
                             type="button"
                             @click="selectedItem = {    
                             name: `{{ $snack->name }}`, 
-                            description: `{{ $snack->description }}`, 
+                            description: `{{ $snack->description }}`,
+                            quantity: 0,
+                            stock: `{{ $snack->stock }}`, 
                             price: `{{ number_format($snack->price, 0, ',', '.') }}`,
                             image: `{{ asset($snack->image) }}`
                         }; showDetail = true">
@@ -93,7 +97,8 @@
                             @click="selectedItem = { 
                             name:  `{{ $drink->name }}`, 
                             description: `{{ $drink->description }}`,
-                            quantity: 0, 
+                            quantity: 0,
+                            stock: `{{ $drink->stock }}`, 
                             price: `{{ number_format($drink->price, 0, ',', '.') }}`,
                             image: `{{ asset($drink->image_path) }}`
                         }; showDetail = true">
@@ -113,7 +118,7 @@
         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
         @click.away="showDetail = false">
         <div class="bg-white p-6 rounded-lg shadow-lg w-[500px] h-auto relative">
-            <button @click="showDetail = false" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">
+            <button @click="showDetail = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-4xl">
                 &times;
             </button>
             <template x-if="selectedItem">
@@ -125,26 +130,30 @@
                         <p x-text="selectedItem.description"></p>
                     </div>
                     <p class="mt-4 font-bold text-gray-700" x-text="'Rp. ' + selectedItem.price"></p>
-                    <div class="flex justify-center text-center gap-4 mt-6">
-                        <button
-                            class="bg-blue-500 text-white text-base font-semibold uppercase px-6 py-2 rounded hover:bg-blue-600">
-                            Buy
-                        </button>
-                        <div class="flex items-center gap-4">
-                            <!-- Tombol untuk mengurangi jumlah -->
-                            <button class="bg-red-500 text-white text-base font-bold px-4 py-2 rounded hover:bg-red-400"
-                                @click="if (selectedItem.quantity > 1) selectedItem.quantity--">
+                    <div class="flex items-center justify-center gap-4 mt-6">
+                        <!-- Tombol untuk mengurangi jumlah -->
+                        <div class="border border-gray-300 rounded">
+                            <button
+                                class="bg-white text-black text-base font-bold px-6 py-2 border-r border-gray-300"
+                                @click="if (selectedItem.quantity > 0) { selectedItem.quantity--; selectedItem.stock++; }">
                                 -
                             </button>
-                            <!-- Menampilkan jumlah -->
-                            <span class="text-xl font-bold" x-text="selectedItem.quantity"></span>
-                            <!-- Tombol untuk menambah jumlah -->
+                            <span class="text-base font-semibold ml-4 mr-4" x-text="selectedItem.quantity"></span>
                             <button
-                                class="bg-green-500 text-white text-base font-bold px-4 py-2 rounded hover:bg-green-400"
-                                @click="selectedItem.quantity++">
+                                class="bg-white text-black text-base font-bold px-6 py-2 border-l border-gray-300"
+                                @click="if (selectedItem.quantity < selectedItem.stock) { selectedItem.quantity++; selectedItem.stock--; }">
                                 +
                             </button>
                         </div>
+                        <p>tersisa <span x-text="selectedItem.stock"></span> buah</p>
+                        
+                        {{-- <p>Total: Rp. <span x-text="selectedItem.price * selectedItem.quantity"></span></p> --}}
+                    </div>
+                    <div class="flex justify-center text-center gap-4 mt-6">
+                        <button
+                            class="bg-blue-500 text-white text-base font-semibold uppercase px-6 py-2 rounded hover:bg-blue-600">
+                            Pesan Sekarang
+                        </button>
                         <button class="bg-green-500 text-white text-base font-bold px-4 py-2 rounded hover:bg-green-400"
                             @click="cart.push({...selectedItem, quantity: selectedItem.quantity}); showDetail = false">
                             Add to Cart

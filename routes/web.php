@@ -27,6 +27,7 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [UserController::class, 'register']);
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 
 Route::get('/admin', [AdminController::class, 'Dashboard'])->name('adminDashboard');
 Route::get('/Nadmn',[AdminController::class, 'tampil'])->name('nadmn.tampil');
