@@ -5,16 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
     @vite('resources/js/register.js')
     @vite('resources/js/text.js')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+
+        * {
+            font-family: "Poppins", serif;
+        }
         #typing-text {
             position: absolute;
             top: 10%;
-            left: 20%;
+            left: 15%;
             transform: translateY(-50%);
         }
         .container {
@@ -27,7 +33,7 @@
     <div class="flex w-full h-full bg-text">
         <!-- Left Side (Illustration) -->
         <div class="flex-1 bg-white h-full p-10 flex flex-col justify-center container">
-            <h1 id="typing-text" class="text-6xl font-bold text-gray-700"></h1>
+            <h1 id="typing-text" class="text-6xl font-bold font-poppins text-gray-700"></h1>
             <div class="mt-48 flex justify-center">
                 <img src="{{ asset('images/ppp.png') }}" alt="logo" class="w-[550px] h-[650px]">
             </div>
@@ -36,7 +42,7 @@
         <!-- Right Side (Form) -->
         <div class="flex-1 p-10 flex flex-col justify-center items-center">
             <div class="text-center mb-10">
-                <h1 class="text-4xl font-bold text-gray-700">Register</h1>
+                <h1 class="text-6xl font-poppins font-bold text-gray-700">Register</h1>
             </div>
 
             <!-- Register Form -->

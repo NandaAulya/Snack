@@ -10,6 +10,6 @@ class snack extends Model
     use HasFactory;
     protected $fillable = 
     [
-        'name', 'price', 'description', 'image', 'stock'
+        'name', 'price', 'description', 'image', 'stock', 'category'
     ];
 }

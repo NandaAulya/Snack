@@ -6,21 +6,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SnackController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\StripeController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
-
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/maps', [HomeController::class, 'maps'])->name('maps');
 Route::get('/ourMenu', [HomeController::class, 'ourMenu'])->name('ourMenu');
-Route::get('/detail', [HomeController::class, 'detail'])->name('detail');
-
-// Route::get('/maps', function () {
-//     return view('maps');
-// });
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
@@ -48,3 +41,10 @@ Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/google', 'googleLogin')->name('auth.google');
     Route::get('auth/callback', 'googleAutentication');
 });
+
+Route::controller(StripeController::class)->group(function(){
+    Route::get('stripe', 'stripe')->name('stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});
+
+Route::get('/cekout', [TransaksiController::class, 'cekout'])->name('cekout');

@@ -23,11 +23,5 @@ class HomeController extends Controller
         $drinks = Drink::all();
         return view('ourMenu', compact('snacks', 'drinks'));
     }
-
-    function detail(){
-        $snacks = snack::all();
-        $drinks = Drink::all();
-        return view('detail', compact('snacks', 'drinks'));
-    }
     
 }
