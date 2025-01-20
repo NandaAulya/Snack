@@ -91,8 +91,9 @@
 
                 <!-- Login Link -->
                 <div class="text-center">
-                    <p class="text-gray-500 text-sm">
-                        Already have an account? <a href="{{ route('login') }}" class="text-blue-500 font-medium hover:underline">Log in</a>
+                    <p class="text-gray-500 text-lg font-poppins">
+                        Already have an account? <a href="{{ route('login') }}"
+                            class="text-blue-500 font-medium hover:underline">Log in</a>
                     </p>
                 </div>
             </form>

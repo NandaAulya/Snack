@@ -27,7 +27,7 @@
             <nav>
                 <ul class="space-y-4 text-xl font-medium">
                     <li><a href="{{ route('profile') }}" class="text-gray-600 hover:text-blue-500">Profil</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-500">History</a></li>
+                    <li><a href="{{ route('historyTransaksi') }}" class="text-gray-600 hover:text-blue-500">History</a></li>
                     <li><a href="{{ route('home') }}" class="text-gray-600 hover:text-blue-500">Home</a></li>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf

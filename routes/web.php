@@ -42,9 +42,8 @@ Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/callback', 'googleAutentication');
 });
 
-Route::controller(StripeController::class)->group(function(){
+Route::controller(TransaksiController::class)->group(function(){
     Route::get('stripe', 'stripe')->name('stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');
+    Route::get('historyTransaksi', 'historyTransaksi')->name('historyTransaksi');
 });
-
-Route::get('/cekout', [TransaksiController::class, 'cekout'])->name('cekout');

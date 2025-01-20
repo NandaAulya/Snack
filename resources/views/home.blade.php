@@ -142,21 +142,20 @@
             </div>
         </div>
 
-        <!-- Konten deskripsi di sebelah kanan -->
         <div class="flex flex-col justify-center w-[500px]">
             <template x-if="selectedItem">
                 <div class="capitalize">
                     <h2 class="text-6xl font-poppins font-bold text-gray-800" x-text="selectedItem.name"></h2>
-                    <div class="font-poppins font-semibold text-2xl text-gray-600 mt-8">
+                    <div class="font-poppins text-2xl text-gray-600 mt-8">
                         <p x-text="selectedItem.description"></p>
                     </div>
-                        <p class="mt-6 font-poppins font-semibold text-2xl text-gray-700" x-text="'Rp. ' + selectedItem.formattedPrice"></p>
+                        <p class="mt-6 font-poppins font-semibold text-xl text-gray-700" x-text="'Rp. ' + selectedItem.priceFormat"></p>
                     <div class="flex justify-center gap-6 mt-8 font-poppins text-xl">
                         <p>Total : <span>Rp. <span x-text="selectedItem.price * selectedItem.quantity"></span></span></p>
                         <div class="border border-gray-300 rounded">
                             <button
                                 class="font-poppins bg-white text-black text-xl font-bold px-4 py-2 border-r border-gray-300"
-                                @click="if (selectedItem.quantity > 0) { selectedItem.quantity--;}">
+                                @click="if (selectedItem.quantity > 0) { selectedItem.quantity--; selectedItem.stock++; }">
                                 -
                             </button>
                             <span class="text-base font-semibold px-4" x-text="selectedItem.quantity"></span>
