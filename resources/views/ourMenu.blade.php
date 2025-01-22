@@ -5,23 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HOME</title>
+    <title>OUR MENU</title>
     @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
     @vite('resources/js/deskripsi.js')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="fontawesome/css/all.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
-
         * {
-            font-family: "Poppins", serif;
-        }
+                    font-family: "Poppins", serif;
+                }
         .card-image {
             height: 12rem;
             width: 100%;
@@ -42,83 +38,79 @@
 
 <body class="h-full bg-white" x-data="{ selectedItem: null, showDetail: false, cart: [] }">
     <x-navbar></x-navbar>
-
-    <!-- Wrapper untuk efek blur -->
-    <div :class="showDetail ? 'backdrop-blur-xl' : ''" class="transition-all duration-300">
-        <!-- Grid untuk Snack dan Drink Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6 mt-20 z-[1]">
-            <!-- Snack Cards -->
-            @foreach ($snacks as $snack)
-            <div class="relative flex flex-col rounded-lg bg-white text-gray-700 shadow-md w-full max-w-xs mx-auto">
-                    <div class="card-image mt-10">
-                        <img src="{{ asset($snack->image) }}" alt="{{ $snack->name }}">
-                    </div>
-                    <div class="p-4">
-                        <p class="font-poppins text-blue-gray-900 text-xl mb-2 capitalize font-bold">{{ $snack->name }}
-                        </p>
-                        <p class="font-poppins text-lg  text-gray-700 opacity-75 truncate-description mb-2"
-                            title="{{ $snack->description }}">
-                            {{ $snack->description }}
-                        </p>
-                        <p class="font-poppins mb-2 text-right text-blue-gray-900 text-lg font-bold">Rp.
-                            {{ number_format($snack->price, 0, ',', '.') }}</p>
-                    </div>
-                    <div class="p-4 pt-0">
-                        <button
-                            class="block w-full rounded-lg bg-blue-gray-900/10 py-2 px-4 text-center text-base font-poppins font-bold uppercase text-blue-gray-900 transition-all hover:scale-105"
-                            type="button"
-                            @click="selectedItem = {    
-                            name: `{{ $snack->name }}`, 
-                            description: `{{ $snack->description }}`,
-                            quantity: 0,
-                            stock: `{{ $snack->stock }}`,
-                            category: `{{ $snack->category }}`, 
-                            price: `{{$snack->price}}`,
-                            formattedPrice: `{{ number_format($snack->price, 0, ',', '.') }}`,
-                            image: `{{ asset($snack->image) }}`
-                        }; showDetail = true">
-                            See Detail
-                        </button>
-                    </div>
+    <h1 class="uppercase text-4xl font-poppins font-bold text-gray-700 mt-10 mb-6 ml-12">snacks</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6  z-[1]">
+        <!-- Snack Cards -->
+        @foreach ($snacks as $snack)
+        <div class="relative flex flex-col rounded-lg bg-white text-gray-700 shadow-md w-full max-w-xs mx-auto">
+            <div class="card-image mt-10">
+                <img src="{{ asset($snack->image) }}" alt="{{ $snack->name }}">
+            </div>
+            <div class="p-4">
+                <p class="font-poppins text-blue-gray-900 text-xl mb-2 capitalize font-bold">{{ $snack->name }}
+                </p>
+                <p class="font-poppins text-lg  text-gray-700 opacity-75 truncate-description mb-2"
+                    title="{{ $snack->description }}">
+                    {{ $snack->description }}
+                </p>
+                <p class="font-poppins mb-2 text-right text-blue-gray-900 text-lg font-bold">Rp.
+                    {{ number_format($snack->price, 0, ',', '.') }}</p>
+            </div>
+                <div class="p-4 pt-0">
+                    <button
+                        class="block w-full rounded-lg bg-blue-gray-900/10 py-2 px-4 text-center text-base font-poppins font-bold uppercase text-blue-gray-900 transition-all hover:scale-105"
+                        type="button"
+                        @click="selectedItem = {    
+                        name: `{{ $snack->name }}`, 
+                        description: `{{ $snack->description }}`,
+                        price: `{{$snack->price}}`, 
+                        priceFormat: `{{ number_format($snack->price, 0, ',', '.') }}`,
+                        quantity: 0,
+                        stock: `{{ $snack->stock }}`,
+                        image: `{{ asset($snack->image) }}`
+                    }; showDetail = true">
+                        See Detail
+                    </button>
                 </div>
-            @endforeach
-
-            <!-- Drink Cards -->
-            @foreach ($drinks as $drink)
-                <div class="relative flex flex-col rounded-lg bg-white text-gray-700 shadow-md w-full max-w-xs mx-auto z-[1]">
-                    <div class="card-image mt-10">
-                        <img src="{{ asset($drink->image_path) }}" alt="{{ $drink->name }}">
-                    </div>
-                    <div class="p-4">
-                        <p class="font-poppins font-bold text-blue-gray-900 text-xl mb-2 capitalize">{{ $drink->name }}
-                        </p>
-                        <p class="font-poppins text-lg text-gray-700 opacity-75 truncate-description text-semibold"
-                            title="{{ $drink->description }}">
-                            {{ $drink->description }}
-                        </p>
-                        <p class="mt-2 text-right font-poppins font-bold text-blue-gray-900 text-lg">Rp.
-                            {{ number_format($drink->price, 0, ',', '.') }}</p>
-                    </div>
-                    <div class="p-4 pt-0">
-                        <button
-                            class="block w-full rounded-lg bg-blue-gray-900/10 py-2 px-4 text-center text-base font-poppins font-bold uppercase text-blue-gray-900 transition-all hover:scale-105"
-                            type="button"
-                            @click="selectedItem = { 
+            </div>
+        @endforeach
+    </div>
+    <h1 class="uppercase text-4xl font-bold text-gray-700 mt-6 mb-6 ml-12">drinks</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6  z-[1]">
+        <!-- Drink Cards -->
+        @foreach ($drinks as $drink)
+        <div class="relative flex flex-col rounded-lg bg-white text-gray-700 shadow-md w-full max-w-xs mx-auto z-[1]">
+            <div class="card-image mt-10">
+                <img src="{{ asset($drink->image_path) }}" alt="{{ $drink->name }}">
+            </div>
+            <div class="p-4">
+                <p class="font-poppins font-bold text-blue-gray-900 text-xl mb-2 capitalize">{{ $drink->name }}
+                </p>
+                <p class="font-poppins text-lg text-gray-700 opacity-75 truncate-description text-semibold"
+                    title="{{ $drink->description }}">
+                    {{ $drink->description }}
+                </p>
+                <p class="mt-2 text-right font-poppins font-bold text-blue-gray-900 text-lg">Rp.
+                    {{ number_format($drink->price, 0, ',', '.') }}</p>
+            </div>
+                <div class="p-4 pt-0">
+                    <button
+                        class="block w-full rounded-lg bg-blue-gray-900/10 py-2 px-4 text-center text-base font-poppins font-bold uppercase text-blue-gray-900 transition-all hover:scale-105"
+                        type="button"
+                        @click="selectedItem = { 
                             name:  `{{ $drink->name }}`, 
-                            description: `{{ $drink->description }}`,
-                            quantity: 0,
-                            stock: `{{ $drink->stock }}`, 
-                            category: `{{ $drink->category }}`,
+                            description: `{{ $drink->description }}`, 
                             price: `{{ $drink->price }}`,
-                            formattedPrice: `{{ number_format($drink->price, 0, ',', '.') }}`,
+                            priceFormat: `{{ number_format($drink->price, 0, ',', '.') }}`,
+                            quantity: 0,
+                            stock: `{{ $drink->stock }}`,
                             image: `{{ asset($drink->image_path) }}`
                         }; showDetail = true">
-                            See Detail
-                        </button>
-                    </div>
+                        See Detail
+                    </button>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
     <x-footer></x-footer>
 
@@ -130,7 +122,7 @@
     @click.away="showDetail = false">
 
     <div class="bg-white p-6 w-full h-full relative grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Tombol close -->
+
         <button @click="showDetail = false" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-4xl">
             &times;
         </button>

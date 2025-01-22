@@ -3,9 +3,6 @@
 @section('content')
     <div class="flex justify-center mt-10">
         <div class="w-[1000px]">
-            {{-- <div class="mb-10 flex justify-center">
-                <h1 class="text-6xl font-bold text-primary">Drinks</h1>
-            </div> --}}
             <div class="flex justify-end mb-8">
                 <a href="{{ route('nadmn.tambah') }}" 
                    class="bg-secondary text-white px-4 py-2 rounded hover:bg-primary">
@@ -24,10 +21,8 @@
                             <h2 class="text-xl font-bold">{{ $data->name }}</h2>
                             <p class="text-lg mt-2 font-semibold">Description: </p>
                             <span>{{ $data->description }}</span>
-                            {{-- <p class="text-sm text-gray-400">Category: {{ $data->category }}</p> --}}
+                            <p class="text-lg mt-2">Stock: {{ $data->stock }}</p>
                             <p class="text-lg mt-2">Price: <span class="font-semibold">Rp {{ number_format($data->price, 0, ',', '.') }}</span></p>
-                            {{-- <p class="text-sm">Stock: {{ $data->stock }}</p> --}}
-                            {{-- <p class="text-sm">Total Sales: {{ $data->total_sales }}</p> --}}
                         </div>
 
                         <!-- Tombol Aksi -->

@@ -119,3 +119,90 @@ colors: {
  'secondary': '#87a30c',
  'accent': '#19ee1e',
 },
+
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Stripe;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Models\drink;
+use App\Models\snack;
+
+class StripeController extends Controller
+{
+    /**
+     * Menampilkan halaman Stripe dan mempersiapkan data untuk pembayaran.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function stripe(Request $request): View
+    {
+        
+        // Mengambil data dari query string
+        $name = $request->query('name');
+        $price = $request->query('price');
+        $quantity = $request->query('quantity');
+        $total = $request->query('total');
+
+        // Menyimpan data ke session
+        session([
+            'name' => $name,
+            'price' => $price,
+            'quantity' => $quantity,
+            'total' => $total,
+        ]);
+
+        // Menampilkan halaman pembayaran dengan data yang telah diproses
+        return view('stripe', compact('name', 'price', 'quantity', 'total'));
+    }
+
+    /**
+     * Proses pembayaran melalui Stripe.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function stripePost(Request $request): RedirectResponse
+    {
+        // Mengambil data pembayaran dari session
+        $name = session('name');
+        $total = session('total');
+
+        // Validasi apakah data tersedia di session
+        if (!$name || !$total) {
+            return redirect()->route('home')->with('error', 'Data pembayaran tidak ditemukan.');
+        }
+
+        // Validasi token Stripe
+        $request->validate([
+            'stripeToken' => 'required',
+        ]);
+
+        // Menetapkan kunci API Stripe
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            // Membuat charge pembayaran berdasarkan harga total
+            Stripe\Charge::create([
+                'amount' => $total * 100, // Mengonversi total ke sen (IDR)
+                'currency' => 'idr',
+                'source' => $request->stripeToken,
+                'description' => "Pembayaran untuk $name",
+            ]);
+
+            // Menghapus data produk dari session setelah pembayaran berhasil
+            session()->forget(['name', 'price', 'quantity', 'total']);
+
+            // Mengarahkan pengguna ke halaman utama dengan pesan sukses
+            return redirect()->route('home')->with('success', 'Pembayaran berhasil!');
+        } catch (\Exception $e) {
+            // Menangani kesalahan jika pembayaran gagal
+            return back()->with('error', $e->getMessage());
+        }
+    }
+}

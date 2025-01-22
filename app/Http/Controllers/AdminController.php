@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\drink as dri;
+use App\Models\snack;
+use App\Models\User;
 
 
 class AdminController extends Controller
 {
     public function Dashboard() {
-        return view('adminDashboard');
+        $drinks = dri::all();
+        $snacks = snack::all();
+        $users = User::all();
+        return view('adminDashboard',compact('drinks', 'snacks', 'users'));
     }
     public function tampil() {
         $drinks = dri::all();
@@ -26,6 +31,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'stock' => 'required|integer',
             'price' => 'required|numeric',
             'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -36,6 +42,7 @@ class AdminController extends Controller
         $drinks = new dri();
         $drinks->name = $request->name;
         $drinks->description = $request->description;
+        $drinks->stock = $request->stock;
         $drinks->price = $request->price;
         $drinks->image_path = 'images/'. $imagename;
         $drinks->save();
@@ -65,6 +72,7 @@ class AdminController extends Controller
         // Update data lainnya
         $drink->name = $request->name;
         $drink->description = $request->description;
+        $drink->stock = $request->stock;
         $drink->price = $request->price;
         
         $drink->save();

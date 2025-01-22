@@ -17,5 +17,11 @@ class HomeController extends Controller
     function maps(){
         return view('maps');
     }
+
+    function ourMenu(){
+        $snacks = snack::all();
+        $drinks = Drink::all();
+        return view('ourMenu', compact('snacks', 'drinks'));
+    }
     
 }

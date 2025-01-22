@@ -21,6 +21,7 @@
                             <h2 class="text-xl font-bold capitalize">{{ $snack->name }}</h2>
                             <p class="text-lg mt-2 font-semibold">Deskripsi:</p>
                             <span>{{ $snack->description }}</span>
+                            <p class="text-lg mt-2">Stok: {{ $snack->stock }}</p>
                             <p class="text-lg mt-2">Harga: <span class="font-semibold">Rp {{ number_format($snack->price, 0, ',', '.') }}</span></p>
                         </div>
 

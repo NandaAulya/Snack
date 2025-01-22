@@ -6,26 +6,21 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SnackController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\StripeController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/maps', [HomeController::class, 'maps'])->name('maps');
-
-// Route::get('/maps', function () {
-//     return view('maps');
-// });
+Route::get('/ourMenu', [HomeController::class, 'ourMenu'])->name('ourMenu');
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [UserController::class, 'register']);
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 
 Route::get('/admin', [AdminController::class, 'Dashboard'])->name('adminDashboard');
 Route::get('/Nadmn',[AdminController::class, 'tampil'])->name('nadmn.tampil');
@@ -45,4 +40,10 @@ Route::get('/snack/deleteSnack/{id}', [SnackController::class, 'deleteSnack'])->
 Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/google', 'googleLogin')->name('auth.google');
     Route::get('auth/callback', 'googleAutentication');
+});
+
+Route::controller(TransaksiController::class)->group(function(){
+    Route::get('stripe', 'stripe')->name('stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+    Route::get('historyTransaksi', 'historyTransaksi')->name('historyTransaksi');
 });

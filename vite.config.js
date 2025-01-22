@@ -18,5 +18,11 @@ export default defineConfig({
             
         }),
     ],
+
+    resolve: {
+        alias: {
+            'fontawesome': __dirname + '/node_modules/@fortawesome/fontawesome-free',
+        }
+    }
 });
 
